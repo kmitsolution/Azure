@@ -15,3 +15,17 @@
  <li><img src="https://github.com/kmitsolution/Azure/blob/main/Azuredevops/images/artifacts-icon-72.png" height=50 widht=50 /> <b>Artifacts</b><br />Create, host and share packages with your team and add artifacts to your CI/CD pipelines with a single click.</li>
   <li><img src="https://github.com/kmitsolution/Azure/blob/main/Azuredevops/images/pipelines-icon-80.png" height=50 widht=50 /> <b>Pipelines</b><br />Build, test and deploy with CI/CD which works with any language, platform and cloud. Connect to GitHub or any other Git provider and deploy continuously.</li>
 </ul>
+
+## VSTS to Azure DevOps 
+ Microsoft renamed VSTS(Visual Studio Team Services) to Azure DevOps Services on Sep 10,2018
+ 
+ <table>
+ <tr><td><b>VSTS</b>       </td><td> <b>Azure DevOps Services</b>     </td></tr>
+ <tr><td>Build & Release</td><td> Azure Pipeline</td></tr>
+ <tr><td>Code</td><td> Azure Repos</td></tr>
+ <tr><td>Work</td><td> Azure Boards</td></tr>
+ <tr><td>Test</td><td> Azure Test plan</td></tr>
+ <tr><td>Packages</td><td> Azure Artifacts</td></tr>
+ </table>
+ 
+  
