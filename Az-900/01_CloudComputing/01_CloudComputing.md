@@ -1,7 +1,25 @@
 # Cloud Computing
-It is on-demand delivery of IT resource like servers,storage,networks and many more which you use through your computer by connecting to internet. 
 
-<img src="https://github.com/kmitsolution/AWS/blob/main/Certifications/Solution_Associate_Architect/images/CloudComputing.JPG" width=700 height=300 />
+<img src="https://github.com/kmitsolution/AWS/blob/main/Certifications/Solution_Associate_Architect/images/CloudComputing.JPG" width=1000 height=300 />
+
+1. **On-Demand Delivery:** Cloud computing offers resources such as servers, storage, databases, networking, software, and more as a service. Users can access these resources instantly without needing to manage the underlying infrastructure.
+
+2. **Resource Pooling:** Cloud providers pool resources to serve multiple customers, allowing for efficient resource utilization and scalability. This pooling enables cost savings and flexibility for users.
+
+3. **Internet Connectivity:** Cloud services are accessed over the internet, providing ubiquitous access to resources from anywhere with an internet connection. Users can connect to cloud services using various devices, including computers, smartphones, and tablets.
+
+4. **Self-Service Provisioning:** Users can provision and manage cloud resources independently through web interfaces or APIs. This self-service model empowers users to quickly deploy and scale resources based on their requirements without the need for human intervention from the cloud provider.
+
+5. **Elasticity and Scalability:** Cloud resources can scale up or down dynamically based on demand. This elasticity allows users to handle fluctuations in workload efficiently, ensuring optimal performance and cost-effectiveness.
+
+6. **Pay-Per-Use Billing:** Cloud services typically follow a pay-per-use or subscription-based billing model, where users only pay for the resources they consume. This flexible pricing model allows organizations to align their costs with actual usage and avoid upfront investments in infrastructure.
+
+7. **Managed Services:** Cloud providers offer a wide range of managed services, including databases, machine learning, analytics, and security services. These managed services offload maintenance and management tasks to the cloud provider, allowing users to focus on building and deploying applications.
+
+Overall, cloud computing provides a scalable, flexible, and cost-effective approach to accessing IT resources, enabling organizations to innovate, scale, and adapt to changing business needs more effectively.
+
+
+
 
 
 ## Cloud Computing Advantages
