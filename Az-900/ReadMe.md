@@ -11,18 +11,12 @@
    - 02_Cloud Service Models (IaaS, PaaS, SaaS)
    - 03_Cloud Deployment Models (Public, Private, Hybrid)
    - 04_Cloud Computing Essentials
+   - 05_Capital Expenditure (CapEx) and Operational Expenditure (OpEx).
 
-2. **Cloud Economics:**
-   - Understanding Principles of Economies of Scale.
-   - Differentiating between Capital Expenditure (CapEx) and Operational Expenditure (OpEx).
-
-3. **Cloud Service Models:**
-   - Exploring IaaS, PaaS, and SaaS and their distinctions.
-   - Comparing Public, Private, and Hybrid Cloud environments.
 
 **Azure Infrastructure and Services:**
 
-4. **Azure Basics:**
+2. **Azure Basics:**
    - Introduction to Azure Regions and Availability Zones.
    - Understanding Azure Resource Groups and Resource Manager.
 
