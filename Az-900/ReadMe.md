@@ -7,7 +7,10 @@
 **Cloud Computing Fundamentals:**
 
 1. **Introduction to Cloud Computing:**
-   - Cloud Computing Essentials: High Availability, Scalability, Elasticity, Agility, Fault Tolerance, and Disaster Recovery.
+   - 01_Cloud Computing
+   - 02_Cloud Service Models (IaaS, PaaS, SaaS)
+   - 03_Cloud Deployment Models (Public, Private, Hybrid)
+   - 04_Cloud Computing Essentials
 
 2. **Cloud Economics:**
    - Understanding Principles of Economies of Scale.
