@@ -1,4 +1,4 @@
-Certainly! Here's a tabular format highlighting the differences between CapEx and OpEx:
+# Capital Expenditure (CapEx) and Operational Expenditure (OpEx)
 
 | Aspect                   | Capital Expenditure (CapEx)                                    | Operating Expenditure (OpEx)                                          |
 |--------------------------|------------------------------------------------------------------|-------------------------------------------------------------------------|
