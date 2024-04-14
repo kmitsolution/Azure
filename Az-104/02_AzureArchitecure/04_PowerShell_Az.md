@@ -49,5 +49,8 @@ To install the Azure PowerShell module, you can follow these steps:
      ```bash
      Import-Module Az
      ```
-
+5. **Connect with Az**:
+   ```bash
+     Connect-AzAccount
+   ```
 Once the Azure PowerShell module is installed, you can start using Azure cmdlets to manage your Azure resources directly from PowerShell.
