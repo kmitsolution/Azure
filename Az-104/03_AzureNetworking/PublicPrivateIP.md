@@ -11,7 +11,22 @@ In Azure Virtual Networks (VNets), both public and private IP addresses play imp
    - **Static Public IP Address**: A static public IP address in Azure is an IP address that remains constant and does not change, even if the associated resource (e.g., virtual machine) is stopped and started. Static public IP addresses are typically used for scenarios where you need a consistent public-facing endpoint, such as hosting a website or configuring a VPN gateway.
    - **Dynamic Public IP Address**: A dynamic public IP address in Azure is an IP address that may change each time the associated resource is restarted or redeployed. Dynamic public IP addresses are suitable for scenarios where the public IP address can change without affecting the functionality of the resource. They are often used for testing environments or transient workloads.
 
+### Public IP addresses SKU 
+Basic and Standard. Each SKU offers different features and capabilities tailored to various use cases and requirements. Here's a comparison of the Basic and Standard SKUs for Public IP addresses:
 
+1. **Basic SKU (it will reire on 30Sep,2025)**:
+   - **Designed for Simplicity**: The Basic SKU is intended for simple scenarios where basic public IP functionality is required.
+   - **Availability**: Basic Public IP addresses are available for free when associated with a VM, Azure Load Balancer, VPN Gateway, or Application Gateway. However, if you want to reserve a Basic Public IP address without associating it with a resource, there may be a small hourly charge.
+   - **Dynamic Assignment**: Basic Public IP addresses are dynamically assigned by Azure from a pool of available addresses.
+   - **Limited Features**: Basic Public IP addresses offer limited features compared to the Standard SKU. For example, they do not support availability zones, outbound FQDN-based NAT, or Public IP Prefix.
+
+2. **Standard SKU**:
+   - **Rich Feature Set**: The Standard SKU offers a richer set of features and capabilities suitable for more complex networking scenarios and production environments.
+   - **Availability**: Standard Public IP addresses are billed based on usage, including a small hourly charge for each IP address and additional charges for data transfer. They are available for reservation without associating them with a specific resource.
+   - **Static Assignment**: Standard Public IP addresses can be statically assigned to resources, ensuring that the IP address remains constant even if the resource is stopped and restarted.
+   - **Advanced Features**: Standard Public IP addresses offer advanced features such as availability zones support, outbound FQDN-based NAT, Public IP Prefix, and DDoS protection.
+
+In summary, the Basic SKU for Public IP addresses is suitable for simple scenarios where basic functionality is required and cost-effectiveness is a priority. On the other hand, the Standard SKU offers advanced features and capabilities for more complex networking requirements and production workloads, albeit with associated costs based on usage. When choosing between the two SKUs, consider your specific requirements for features, availability, and cost.
 
 2. **Private IP Addresses**:
    - Private IP addresses in Azure are non-routable addresses used for communication within a VNet or between connected VNets. They are not directly accessible from the internet.
