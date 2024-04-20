@@ -2,7 +2,8 @@
 
 In Azure, networking revolves around the concept of Virtual Networks (VNets), Subnets, and Network Interface Cards (NICs). Let's break down each of these components:
 
-<img width="940" alt="image" src="https://github.com/kmitsolution/Azure/assets/84008107/f9e8f5c9-12c5-4750-9036-f5a06f061648">
+<img width="940" alt="image" src="https://github.com/kmitsolution/Azure/assets/84008107/af7d0cc7-b20a-416f-91b2-8b5259f6cc63">
+
 
 
 1. **Virtual Network (VNet)**:
