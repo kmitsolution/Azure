@@ -19,4 +19,8 @@ Here's an overview of how Route Tables work in Azure:
 
 7. **Priority**: When multiple routes match a destination, Azure uses the most specific route (longest prefix match) with the highest priority. If there are multiple routes with the same prefix length, Azure uses the route with the lowest numeric route priority.
 
+```
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name IpEnableRouter -Value 1
+
+```
 Route Tables are a fundamental component of Azure networking, providing flexibility and control over how traffic is routed within virtual networks and between virtual networks and the internet. They play a crucial role in designing and managing network architecture in Azure environments.
