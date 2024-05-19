@@ -26,4 +26,14 @@ Azure Kubernetes Service (AKS) pricing is based on several factors, including th
    - AKS integrates with various Azure services, such as Azure Container Registry (ACR) for container image storage and Azure Active Directory (AAD) for authentication.
    - Costs for using these additional services may vary based on usage.
 
+#### To estimate the pricing for AKS, you can use the Azure Pricing Calculator and follow these steps:
+
+1. Navigate to the Azure Pricing Calculator website: https://azure.microsoft.com/en-us/pricing/calculator/.
+2. Select the "Containers" category.
+3. Choose "Azure Kubernetes Service (AKS)" from the list of services.
+4. Configure the parameters for your AKS cluster, including the number and type of VMs, disk type and size, networking options, monitoring requirements, and any other relevant factors.
+5. Review the estimated monthly cost based on your configuration.
+
+
+
 It's essential to review the Azure pricing documentation and use the Azure Pricing Calculator to estimate the cost of running AKS based on your specific requirements, such as cluster size, region, and additional services utilized. Additionally, Azure periodically updates its pricing, so it's essential to stay informed about any changes that may affect AKS costs.
