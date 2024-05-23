@@ -15,6 +15,7 @@
    **Extensions:**
      - **Kubernetes Extension:** [Kubernetes Extension](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools)
      - **Azure Account Extension:** [Azure Account Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account)
+     - **Azure Display Kubernetes**
      - **Description:** Install these extensions in VS Code to enhance your AKS management experience. The Kubernetes extension provides features like cluster exploration, resource management, and YAML editing. The Azure Account extension enables seamless integration with Azure services, allowing you to manage your AKS clusters directly from VS Code.
 
 4. **Azure PowerShell Module**:
