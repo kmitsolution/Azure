@@ -6,7 +6,7 @@ To install and uninstall an Azure Kubernetes Service (AKS) cluster using Azure C
 1. **Log in to Azure**: Use the `az login` command to authenticate with your Azure account.
 
    ```bash
-   az login
+   az login --use-device
    ```
 
 2. **Set Subscription (Optional)**: If you have multiple Azure subscriptions and want to use a specific one, set the active subscription using the `az account set` command.
