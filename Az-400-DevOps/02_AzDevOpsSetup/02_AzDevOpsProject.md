@@ -37,13 +37,14 @@ Here’s a detailed, step-by-step guide on creating a new project in Azure DevOp
 2. **Sign In:**
    - Log in with your Microsoft account credentials. If you don’t have an account, you’ll need to sign up.
 
-   ![Sign In to Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/media/organizations/azure-devops-sign-in.png)
+   
+<img width="925" alt="image" src="https://github.com/user-attachments/assets/530abdd4-b892-46ae-874f-c26c273a59c1">
 
 ### **2. Navigate to Your Organization**
 
 1. **Select or Create Your Organization:**
    - If you have multiple organizations, select the relevant one from the drop-down menu in the top-left corner.
-   - If you don’t have an organization, follow the steps from the previous response to create one. For example, create an organization named `KMITORG`.
+   - If you don’t have an organization, follow the steps from the previous response to create one. For example, create an organization named `AZChampions`.
 
 
 ### **3. Create a New Project**
@@ -61,13 +62,13 @@ Here’s a detailed, step-by-step guide on creating a new project in Azure DevOp
    - **Version Control:** Choose **Git** as the version control system.
    - **Work Item Process:** Select **Agile** as the process template.
 
-   ![Create New Project](https://learn.microsoft.com/en-us/azure/devops/media/organizations/project-creation.png)
+   
 
 3. **Create the Project:**
 
    - Click on **Create** to set up your new project with the chosen settings.
 
-   ![Create Project](https://learn.microsoft.com/en-us/azure/devops/media/organizations/create-new-project.png)
+   
 
 ### **4. Verify and Configure Your Project**
 
@@ -75,7 +76,7 @@ Here’s a detailed, step-by-step guide on creating a new project in Azure DevOp
 
    - After creating the project, you should see a confirmation message. Click on **EcommWebsite** to open the project.
 
-   ![Project Confirmation](https://learn.microsoft.com/en-us/azure/devops/media/organizations/project-creation-success.png)
+   
 
 2. **Initial Setup:**
 
@@ -85,14 +86,14 @@ Here’s a detailed, step-by-step guide on creating a new project in Azure DevOp
    - **Test Plans:** Create test plans and manage your testing processes.
    - **Artifacts:** If needed, create feeds to manage packages and dependencies.
 
-   ![Project Dashboard](https://learn.microsoft.com/en-us/azure/devops/media/organizations/project-dashboard.png)
+   
 
 ### **5. Configure Project Settings**
 
 1. **Access Project Settings:**
    - Click on **Project Settings** at the bottom-left corner of the page.
 
-   ![Project Settings](https://learn.microsoft.com/en-us/azure/devops/media/organizations/project-settings.png)
+   
 
 2. **Configure Various Aspects:**
    - **Repository Settings:** Manage Git repositories, branches, and permissions.
@@ -101,7 +102,7 @@ Here’s a detailed, step-by-step guide on creating a new project in Azure DevOp
    - **Test Plans Settings:** Set up test plans and test suites.
    - **Artifact Feeds:** Manage feeds and packages.
 
-   ![Project Settings Navigation](https://learn.microsoft.com/en-us/azure/devops/media/organizations/project-settings-nav.png)
+   
 
 ### **6. Add Team Members**
 
@@ -111,12 +112,12 @@ Here’s a detailed, step-by-step guide on creating a new project in Azure DevOp
 2. **Add Members:**
    - Click on **Add** to invite new members by entering their email addresses.
 
-   ![Add Team Members](https://learn.microsoft.com/en-us/azure/devops/media/organizations/teams.png)
+   
 
 3. **Assign Roles:**
    - Set up roles and permissions for team members.
 
-   ![Assign Roles](https://learn.microsoft.com/en-us/azure/devops/media/organizations/roles.png)
+   
 
 ---
 
