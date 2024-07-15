@@ -2,6 +2,8 @@ In Azure DevOps, when creating a new project, you have the option to choose from
 
 # Process Templates in Azure DevOps
 
+<img width="709" alt="image" src="https://github.com/user-attachments/assets/e48d01ce-0e9c-4ce1-b870-0e4c7c4de53b">
+
 1. **Basic (default)**:
    - **Description**: This template is highly flexible and suitable for teams new to Azure DevOps or those who prefer a simple, customizable approach.
    - **Ideal For**: Teams that need a lightweight and adaptable structure without strict adherence to a particular methodology.
