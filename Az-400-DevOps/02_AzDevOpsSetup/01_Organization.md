@@ -11,9 +11,10 @@ In **Azure DevOps**, an **Organization** is a top-level container that holds you
 
 ### Is the Organization Name Globally Unique?
 
-Yes, the organization name you choose for Azure DevOps is **globally unique**. This means that no two organizations can have the same name. The name is part of the URL for your Azure DevOps organization, such as `https://dev.azure.com/KMITORG`.
+Yes, the organization name you choose for Azure DevOps is **globally unique**. This means that no two organizations can have the same name. The name is part of the 
 
-### How to Create an Organization in Azure DevOps (Steps for KMITORG)
+### How to Create an Organization in Azure DevOps  
+<a href="https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops"> Create Organization </a>
 
 Here’s a step-by-step guide to creating an organization in Azure DevOps with the example name `KMITORG`:
 
