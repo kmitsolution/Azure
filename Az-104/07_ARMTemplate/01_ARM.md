@@ -8,12 +8,27 @@ First, you'll need to create an ARM template JSON file. This file defines the re
 {
   "$schema": "https://schema.management.azure.com/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminPassword": {
+      "type": "string",
+      "metadata": {
+        "description": "The administrator password for the virtual machine."
+      }
+    }
+  },
+  "variables": {
+    "location": "West US2",
+    "vmName": "myVM",
+    "nicName": "myNIC",
+    "vnetName": "myVNet",
+    "adminUsername": "azureuser"
+  },
   "resources": [
     {
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2021-07-01",
-      "name": "myVM",
-      "location": "East US",
+      "name": "[variables('vmName')]",
+      "location": "[variables('location')]",
       "properties": {
         "hardwareProfile": {
           "vmSize": "Standard_DS1_v2"
@@ -33,14 +48,14 @@ First, you'll need to create an ARM template JSON file. This file defines the re
           }
         },
         "osProfile": {
-          "computerName": "myVM",
-          "adminUsername": "azureuser",
-          "adminPassword": "P@ssw0rd1234"
+          "computerName": "[variables('vmName')]",
+          "adminUsername": "[variables('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
         },
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', 'myNIC')]"
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
             }
           ]
         }
@@ -49,8 +64,8 @@ First, you'll need to create an ARM template JSON file. This file defines the re
     {
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2021-03-01",
-      "name": "myNIC",
-      "location": "East US",
+      "name": "[variables('nicName')]",
+      "location": "[variables('location')]",
       "properties": {
         "ipConfigurations": [
           {
@@ -58,7 +73,7 @@ First, you'll need to create an ARM template JSON file. This file defines the re
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
               "subnet": {
-                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', 'myVNet', 'default')]"
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'), 'default')]"
               }
             }
           }
@@ -68,8 +83,8 @@ First, you'll need to create an ARM template JSON file. This file defines the re
     {
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2021-03-01",
-      "name": "myVNet",
-      "location": "East US",
+      "name": "[variables('vnetName')]",
+      "location": "[variables('location')]",
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
