@@ -202,3 +202,44 @@ Hello, raman. This HTTP triggered function executed successfully.
 
 
 ---
+
+
+---
+
+## 🔗 **Step 7: View Function Integration Details**
+
+After you've created and tested your function, you can explore how the function is **wired together** using the **Integration tab** in the Azure Portal.
+
+### 📍 Steps:
+
+1. Go to your Function App in the Azure Portal.
+2. Click on **Functions** in the left panel, and select your function (e.g., `HttpTrigger1`).
+3. In the function menu, click on **Integration**.
+
+---
+
+<img width="712" alt="image" src="https://github.com/user-attachments/assets/f866f71a-4c2b-4b16-ad72-22c3a378cd66" />
+
+
+### 🔍 What You’ll See in the Integration Tab:
+
+| Component   | Description                                                                                     |
+| ----------- | ----------------------------------------------------------------------------------------------- |
+| **Trigger** | `HttpTrigger` — this is what initiates the function execution when an HTTP request is received. |
+| **Input**   | Usually `req` (HTTP request object).                                                            |
+| **Output**  | `HTTP (res)` — the HTTP response returned by your function logic.                               |
+
+---
+
+### 🧠 Why It Matters:
+
+* This view gives you a **visual layout** of how your function is connected.
+* In more complex functions, you can add:
+
+  * **Input bindings** (e.g., Blob, Cosmos DB, Queue, etc.)
+  * **Output bindings** (e.g., send results to Storage, Event Hub, etc.)
+* This helps design **event-driven workflows** without needing extra plumbing in code.
+
+---
+
+
