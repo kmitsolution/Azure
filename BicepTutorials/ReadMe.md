@@ -1,7 +1,3 @@
-Absolutely! Here’s a **structured learning outline** you can follow to learn Azure Bicep step by step. I’ll break it into stages (beginner → advanced), with clear goals and practice steps.
-
----
-
 # Azure Bicep Learning Outline
 
 ## **1. Foundations**
