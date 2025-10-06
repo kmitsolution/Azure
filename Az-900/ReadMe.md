@@ -1,6 +1,6 @@
 # 🎓 AZ-900: Microsoft Azure Fundamentals 
 <img width="125" height="125" alt="image" src="https://github.com/user-attachments/assets/50d3b3ea-3de7-4cdc-8a3a-59b2236cd82b" />
-
+<a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/?practice-assessment-type=certification"> Az -900 Microsoft Certified: Azure Fundamentals </a>
 
 ---
 
