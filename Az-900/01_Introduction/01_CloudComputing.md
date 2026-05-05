@@ -1,4 +1,28 @@
 # Cloud Computing
+Cloud computing means running your IT systems (servers, storage, databases, apps) on remote data centers managed by providers like Amazon Web Services, Microsoft Azure, or Google Cloud Platform instead of your own physical servers (on-premises).
+
+Instead of buying hardware, you rent computing power over the internet.
+
+## Example Scenario: Migrating a Company to Cloud
+
+Let’s say a company called ABC Retail runs an e-commerce website on-premises.
+
+### Current On-Prem Architecture:
+
+1. Web server (hosts website)
+2. Database server (stores customer data)
+3. Storage server (images, products)
+4. Backup system
+5. Many more
+   
+
+### Problems:
+
+1. Traffic spikes during sales crash the system
+2. Hardware upgrades are expensive
+3. Downtime during maintenance
+4. Latency issue
+5. Disaster Recovery issue
 
 <img src="https://github.com/kmitsolution/AWS/blob/main/Certifications/Solution_Associate_Architect/images/CloudComputing.JPG" width=1000 height=300 />
 
