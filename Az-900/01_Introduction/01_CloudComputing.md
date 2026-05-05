@@ -3,7 +3,7 @@ Cloud computing means running your IT systems (servers, storage, databases, apps
 
 Instead of buying hardware, you rent computing power over the internet.
 
-## Example Scenario: Migrating a Company to Cloud
+## Example Scenario: Why a Company migrate to Cloud
 
 Let’s say a company called ABC Retail runs an e-commerce website on-premises.
 
