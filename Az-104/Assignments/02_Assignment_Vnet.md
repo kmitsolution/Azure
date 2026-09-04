@@ -1,6 +1,3 @@
-Absolutely. Since you have completed the **Azure Basics Assignment – Part 1 and Part 2**, the next assignment should move into **Azure Networking fundamentals**.
-
-I recommend making this **Assignment 02 – Azure Virtual Network & Subnetting**, with a mix of theory, CIDR calculations, Azure Portal practical work, CLI practice, architecture, and troubleshooting.
 
 # Azure Assignment 02 – Virtual Network, Subnet & CIDR
 
