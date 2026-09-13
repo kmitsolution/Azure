@@ -1,3 +1,4 @@
+8
  **Azure CLI commands for both Linux/macOS Bash and Windows PowerShell**. There are **no Azure PowerShell (`Az`) cmdlets**—only Azure CLI.
 
 # AZ-104 Hands-On Lab
@@ -730,7 +731,8 @@ az vm create \
   --vnet-name $VNET \
   --subnet PublicSubnet \
   --admin-username azureuser \
-  --generate-ssh-keys \
+  --admin-username raman \
+  --admin-password "Password@1234567"
   --public-ip-sku Standard
 ```
 
@@ -741,12 +743,12 @@ az vm create `
   --resource-group $RG `
   --name PublicVM `
   --image Ubuntu2204 `
+  --size Standard_D2s_v3 `
   --vnet-name $VNET `
-  --subnet PublicSubnet `
-  --admin-username azureuser `
-  --generate-ssh-keys `
-  --public-ip-sku Standard
-```
+   --subnet PublicSubnet `
+   --admin-username raman `
+   --admin-password "Password@1234567" `
+   --public-ip-sku Standard```
 
 Get the public IP:
 
@@ -807,11 +809,13 @@ az vm create `
   --resource-group $RG `
   --name PrivateVM `
   --image Ubuntu2204 `
+  --size Standard_D2s_v3 `
   --vnet-name $VNET `
-  --subnet PrivateSubnet `
-  --admin-username azureuser `
-  --generate-ssh-keys `
-  --public-ip-address ""
+   --subnet PrivateSubnet `
+   --admin-username raman `
+   --admin-password "Password@1234567" `
+   --public-ip-sku Standard```
+ress ""
 ```
 
 Get the private IP:
