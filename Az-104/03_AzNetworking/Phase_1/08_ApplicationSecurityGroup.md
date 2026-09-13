@@ -1,681 +1,579 @@
-# Azure Application Security Groups (ASG)
 
-Application Security Groups (ASGs) make NSG rules easier to manage by allowing you to **group virtual machines based on their role** instead of writing rules using IP addresses.
+# Azure Application Security Group (ASG)
 
-Think of ASGs as **logical groups** of VMs.
+An **Application Security Group** is a logical way to group **network interfaces (NICs)** of Azure VMs based on their application role.
+
+Instead of writing NSG rules using individual IP addresses, you can write rules using **ASG names**.
+
+### Simple definition
+
+> **ASG allows you to group VM network interfaces logically and use those groups as the source or destination in NSG rules.**
+
+Think of it as:
+
+```text
+ASG = Logical group of VM NICs
+NSG = Security rules
+```
 
 ---
 
-# Why Do We Need ASGs?
+# Real-Time Example
 
-Imagine you have 100 VMs.
-
-Without ASGs, your NSG rule might look like this:
+Suppose you have a 3-tier application:
 
 ```text
-Allow
+                    Internet
+                       |
+                       ↓
+                 Web Servers
+                10.0.1.4
+                10.0.1.5
+                       |
+                       ↓
+              Application Servers
+                10.0.2.4
+                10.0.2.5
+                       |
+                       ↓
+                Database Servers
+                10.0.3.4
+                10.0.3.5
+```
 
-10.0.1.4
-10.0.1.5
-10.0.1.6
-10.0.1.7
-10.0.1.8
-...
+Create three ASGs:
 
-↓
+```text
+ASG-Web
+ASG-App
+ASG-DB
+```
 
+Then your NSG rules can say:
+
+```text
+Internet
+   ↓
+ASG-Web
+   Port 80/443
+
+ASG-Web
+   ↓
+ASG-App
+   Port 8080
+
+ASG-App
+   ↓
+ASG-DB
+   Port 1433
+```
+
+Notice that we don't need to specify:
+
+```text
 10.0.2.4
 10.0.2.5
+```
+
+in the NSG rule.
+
+---
+
+# Why ASG is Useful
+
+Imagine tomorrow you add another application server:
+
+```text
+AppVM03
 10.0.2.6
-
-Port 443
 ```
 
-Now suppose a new VM is created.
+You simply add its NIC to:
 
 ```text
-10.0.1.20
+ASG-App
 ```
 
-You must manually update all NSG rules.
+The existing NSG rule automatically applies.
 
-This quickly becomes difficult to manage.
+You don't need to modify the NSG rule.
+
+That's the main benefit.
 
 ---
 
-# Solution: Application Security Groups
-
-Instead of IP addresses, you create groups.
-
-Example:
+# ASG Architecture
 
 ```text
-Web-ASG
-
-App-ASG
-
-DB-ASG
+                    NSG
+                     |
+        +------------+-------------+
+        |            |             |
+        ↓            ↓             ↓
+    ASG-Web      ASG-App       ASG-DB
+        |            |             |
+        ↓            ↓             ↓
+      NIC1         NIC3          NIC5
+      NIC2         NIC4          NIC6
+       |             |             |
+      VM1           VM3           VM5
+      VM2           VM4           VM6
 ```
-
-Now your NSG rule becomes:
-
-```text
-Source      : Web-ASG
-
-Destination : App-ASG
-
-Port        : 443
-
-Action      : Allow
-```
-
-No IP addresses are used.
 
 ---
 
-# Real Example
+# Important Point
+
+An ASG **doesn't provide security by itself**.
+
+It is simply a grouping mechanism.
+
+The **NSG provides the actual security rule**.
+
+```text
+ASG
+ ↓
+Grouping
+
+NSG
+ ↓
+Security rule
+```
+
+---
+
+# Creating ASGs Through Azure Portal
+
+Go to:
+
+**Azure Portal → Application security groups**
+
+Click:
+
+**+ Create**
+
+---
+
+## ASG-Web
+
+Enter:
+
+```text
+Subscription: Your Subscription
+Resource Group: az104-rg
+Name: ASG-Web
+Region: Central India
+```
+
+Click **Review + Create → Create**.
+
+Create two more:
+
+```text
+ASG-App
+ASG-DB
+```
+
+---
+
+# Attach VM NIC to ASG
 
 Suppose you have:
 
 ```text
-Web Servers
-
-VM1
-VM2
-VM3
+web-vm01
 ```
 
-All belong to:
+Go to:
+
+**VM → Networking → Network settings**
+
+Select the NIC.
+
+Under **Application security groups**, select:
 
 ```text
-Web-ASG
+ASG-Web
 ```
 
-Similarly:
+Save.
+
+Do the same for:
 
 ```text
-App1
-App2
-```
+web-vm02 → ASG-Web
 
-belong to:
+app-vm01 → ASG-App
+app-vm02 → ASG-App
 
-```text
-App-ASG
-```
-
-Database:
-
-```text
-SQL1
-```
-
-belongs to:
-
-```text
-DB-ASG
-```
-
----
-
-# Architecture
-
-```text
-Internet
-      │
-Application Gateway
-      │
-───────────────
-Web-ASG
-│
-├── VM1
-├── VM2
-└── VM3
-      │
-───────────────
-App-ASG
-│
-├── App1
-└── App2
-      │
-───────────────
-DB-ASG
-│
-└── SQL1
-```
-
----
-
-# NSG Rules Using ASGs
-
-### Rule 1
-
-```text
-Source
-
-Internet
-
-↓
-
-Destination
-
-Web-ASG
-
-Port 443
-
-Allow
-```
-
----
-
-### Rule 2
-
-```text
-Web-ASG
-
-↓
-
-App-ASG
-
-Port 443
-
-Allow
-```
-
----
-
-### Rule 3
-
-```text
-App-ASG
-
-↓
-
-DB-ASG
-
-Port 1433
-
-Allow
-```
-
----
-
-### Rule 4
-
-```text
-Any
-
-↓
-
-DB-ASG
-
-Port *
-
-Deny
-```
-
----
-
-# Advantages
-
-Without ASGs:
-
-```text
-Allow
-
-10.0.1.4
-
-10.0.1.5
-
-10.0.1.6
-```
-
-With ASGs:
-
-```text
-Allow
-
-Web-ASG
-```
-
-Much simpler.
-
----
-
-# Dynamic Membership
-
-Suppose you add:
-
-```text
-VM4
-```
-
-Simply assign it to:
-
-```text
-Web-ASG
-```
-
-The existing NSG rules automatically apply.
-
-No rule modification is needed.
-
----
-
-# How ASG Works
-
-Step 1
-
-Create ASG:
-
-```text
-Web-ASG
-```
-
----
-
-Step 2
-
-Associate VM NICs.
-
-```text
-VM1
-
-↓
-
-NIC
-
-↓
-
-Web-ASG
-```
-
----
-
-Step 3
-
-Reference ASG in NSG rules.
-
-```text
-Source
-
-Web-ASG
-
-↓
-
-Destination
-
-App-ASG
-```
-
-Azure automatically resolves the VM IP addresses.
-
----
-
-# CLI Example
-
-## Create ASG
-
-```bash
-az network asg create \
-   -g demo-rg \
-   -n Web-ASG
-```
-
----
-
-## Create App ASG
-
-```bash
-az network asg create \
-   -g demo-rg \
-   -n App-ASG
-```
-
----
-
-## Associate NIC with ASG
-
-```bash
-az network nic ip-config update \
-   -g demo-rg \
-   --nic-name webnic \
-   -n ipconfig1 \
-   --application-security-groups Web-ASG
+db-vm01 → ASG-DB
+db-vm02 → ASG-DB
 ```
 
 ---
 
 # Create NSG Rule
 
-```bash
-az network nsg rule create \
-   -g demo-rg \
-   --nsg-name web-nsg \
-   -n Allow-Web-To-App \
-   --priority 100 \
-   --source-asgs Web-ASG \
-   --destination-asgs App-ASG \
-   --destination-port-ranges 443 \
-   --protocol Tcp \
-   --access Allow
-```
-
----
-
-# ASG Scope
-
-An ASG belongs to a **single VNet**.
+Now create an NSG.
 
 Example:
 
 ```text
-Central India
-
-VNet-A
-
-Web-ASG
+nsg-app
 ```
 
-You cannot directly use the same ASG for VMs in another VNet.
+Go to:
+
+**NSG → Inbound security rules → Add**
+
+Suppose application servers should accept traffic only from web servers.
+
+Configure:
+
+```text
+Source:
+Application security group
+
+Source ASG:
+ASG-Web
+
+Source port:
+*
+
+Destination:
+Application security group
+
+Destination ASG:
+ASG-App
+
+Destination port:
+8080
+
+Protocol:
+TCP
+
+Action:
+Allow
+
+Priority:
+100
+
+Name:
+Allow-Web-To-App
+```
+
+The rule means:
+
+```text
+ASG-Web
+   |
+   | TCP 8080
+   ↓
+ASG-App
+```
 
 ---
 
-# Micro Segmentation
+# Another Rule: App → Database
 
-This is one of the biggest reasons ASGs are used.
-
-## What is Micro Segmentation?
-
-Micro segmentation means dividing your network into **small, secure segments** so that each application tier communicates **only with the tiers it needs**.
-
-Instead of allowing:
+Create:
 
 ```text
-Everyone
+Source:
+ASG-App
 
-↓
+Destination:
+ASG-DB
 
-Everyone
+Destination port:
+1433
+
+Protocol:
+TCP
+
+Action:
+Allow
 ```
 
-you allow only:
-
-```text
-Web
-
-↓
-
-App
-
-↓
-
-Database
-```
-
----
-
-## Without Micro Segmentation
-
-```text
-Web VM
-
-↓
-
-Database
-```
-
-Allowed.
-
-App VM
-
-↓
-
-Database
-
-```
-
-Allowed.
-
-Any VM
-
-↓
-
-Any VM
-```
-
-Allowed.
-
-This is not secure.
-
----
-
-## With Micro Segmentation
+Architecture:
 
 ```text
 Internet
-      │
-Web-ASG
-      │
-Port 443
-      │
-App-ASG
-      │
-Port 1433
-      │
-DB-ASG
+   |
+   | 80/443
+   ↓
+ASG-Web
+   |
+   | 8080
+   ↓
+ASG-App
+   |
+   | 1433
+   ↓
+ASG-DB
 ```
 
-Only approved communication paths exist.
+This is much easier to maintain than using IP addresses.
 
 ---
 
-# Enterprise Banking Example
+# Azure CLI
 
-Imagine an online banking application.
+Let's create the same environment using CLI.
 
-```text
-Internet
-      │
-Application Gateway
-      │
-──────────────
-Web-ASG
-      │
-HTTPS
-      │
-──────────────
-App-ASG
-      │
-SQL 1433
-      │
-──────────────
-DB-ASG
+## 1. Create Resource Group
+
+```bash
+az group create \
+  --name az104-rg \
+  --location centralindia
 ```
-
-### Allowed Traffic
-
-| Source   | Destination | Port |
-| -------- | ----------- | ---- |
-| Internet | Web-ASG     | 443  |
-| Web-ASG  | App-ASG     | 443  |
-| App-ASG  | DB-ASG      | 1433 |
 
 ---
 
-### Denied Traffic
+# 2. Create ASGs
 
-```text
-Internet
+### Web
 
-↓
-
-DB-ASG
+```bash
+az network asg create \
+  --resource-group az104-rg \
+  --name ASG-Web
 ```
 
-Denied.
+### App
+
+```bash
+az network asg create \
+  --resource-group az104-rg \
+  --name ASG-App
+```
+
+### Database
+
+```bash
+az network asg create \
+  --resource-group az104-rg \
+  --name ASG-DB
+```
 
 ---
 
-```text
-Internet
+# 3. Get VM NIC
 
-↓
+For example:
 
-App-ASG
+```bash
+az vm show \
+  --resource-group az104-rg \
+  --name web-vm01 \
+  --query "networkProfile.networkInterfaces[0].id" \
+  --output tsv
 ```
 
-Denied.
+You get something like:
+
+```text
+/subscriptions/.../networkInterfaces/web-vm01-nic
+```
 
 ---
 
-```text
-Web-ASG
+# 4. Associate NIC with ASG
 
-↓
-
-DB-ASG
+```bash
+az network nic ip-config update \
+  --resource-group az104-rg \
+  --nic-name web-vm01-nic \
+  --name ipconfig1 \
+  --application-security-groups ASG-Web
 ```
 
-Denied.
+Now:
+
+```text
+web-vm01 NIC
+     ↓
+ASG-Web
+```
+
+Do the same for additional VMs.
 
 ---
 
-# Why Is This More Secure?
+# 5. Create NSG
 
-If a web server is compromised, the attacker **cannot directly connect to the database** because the NSG rules only allow:
-
-```text
-Web-ASG
-
-↓
-
-App-ASG
+```bash
+az network nsg create \
+  --resource-group az104-rg \
+  --name nsg-app
 ```
-
-and
-
-```text
-App-ASG
-
-↓
-
-DB-ASG
-```
-
-This limits lateral movement inside the network.
 
 ---
 
-# Real Azure Example
+# 6. Create Web → App Rule
 
-```text
-VNet
-
-Web Subnet
-
-VM1
-VM2
-
-↓
-
-Web-ASG
-
--------------------
-
-App Subnet
-
-VM3
-VM4
-
-↓
-
-App-ASG
-
--------------------
-
-DB Subnet
-
-SQL VM
-
-↓
-
-DB-ASG
+```bash
+az network nsg rule create \
+  --resource-group az104-rg \
+  --nsg-name nsg-app \
+  --name Allow-Web-To-App \
+  --priority 100 \
+  --direction Inbound \
+  --access Allow \
+  --protocol Tcp \
+  --source-asgs ASG-Web \
+  --destination-asgs ASG-App \
+  --destination-port-ranges 8080
 ```
 
-Notice that **ASGs are based on application roles, not subnet boundaries**. Two VMs in the same subnet can belong to different ASGs if they serve different purposes.
+The important part is:
+
+```text
+--source-asgs ASG-Web
+--destination-asgs ASG-App
+```
+
+---
+
+# 7. Create App → DB Rule
+
+```bash
+az network nsg rule create \
+  --resource-group az104-rg \
+  --nsg-name nsg-db \
+  --name Allow-App-To-DB \
+  --priority 100 \
+  --direction Inbound \
+  --access Allow \
+  --protocol Tcp \
+  --source-asgs ASG-App \
+  --destination-asgs ASG-DB \
+  --destination-port-ranges 1433
+```
+
+---
+
+# IP Address vs ASG
+
+Without ASG:
+
+```text
+Source: 10.0.1.4
+Destination: 10.0.2.4
+Port: 8080
+```
+
+You need another rule for:
+
+```text
+10.0.1.5 → 10.0.2.5
+```
+
+This becomes difficult to maintain.
+
+With ASG:
+
+```text
+Source: ASG-Web
+Destination: ASG-App
+Port: 8080
+```
+
+Any NIC belonging to ASG-Web can communicate with any NIC belonging to ASG-App according to that rule.
+
+---
+
+# Very Important AZ-104 Point
+
+An ASG contains **NICs**, not VMs directly.
+
+Think:
+
+```text
+VM
+ ↓
+NIC
+ ↓
+ASG
+```
+
+Not:
+
+```text
+VM
+ ↓
+ASG
+```
+
+Technically, you associate the **NIC's IP configuration** with the ASG.
 
 ---
 
 # ASG vs NSG
 
-Students often confuse these.
+| ASG                                  | NSG                     |
+| ------------------------------------ | ----------------------- |
+| Logical grouping                     | Security filtering      |
+| Groups NICs                          | Contains security rules |
+| Doesn't allow/deny traffic by itself | Allows/denies traffic   |
+| Used by NSG rules                    | Evaluates traffic       |
+| Example: ASG-Web                     | Example: Allow TCP 443  |
 
-| NSG                        | ASG                          |
-| -------------------------- | ---------------------------- |
-| Contains security rules    | Contains VM group membership |
-| Filters traffic            | Organizes VMs logically      |
-| Applied to Subnets or NICs | Referenced inside NSG rules  |
-| Acts like a firewall       | Acts like a label or group   |
+### Easy memory trick
 
-An easy way to remember it is:
+> **ASG = Who belongs to the application group?**
 
-* **NSG decides *what traffic is allowed or denied*.**
-* **ASG decides *which VMs belong to a particular application group*.**
-
----
-
-# Interview Questions
-
-### Q1. Does ASG replace NSG?
-
-**No.**
-
-ASGs work **with** NSGs. You reference ASGs inside NSG rules.
+> **NSG = What traffic is allowed?**
 
 ---
 
-### Q2. Can one VM belong to multiple ASGs?
+# Real-World Example
 
-**Yes.** A NIC's IP configuration can be associated with multiple ASGs, allowing the VM to participate in multiple logical application groups.
+Imagine a company has:
 
----
+```text
+100 Web Servers
+50 App Servers
+20 DB Servers
+```
 
-### Q3. Can ASGs contain VMs from different VNets?
+You don't want to create hundreds of IP-based NSG rules.
 
-**No.**
+Instead:
 
-ASGs are scoped to a single VNet.
+```text
+ASG-Web
+   ↓
+100 Web NICs
 
----
+ASG-App
+   ↓
+50 App NICs
 
-### Q4. Can ASGs span multiple Azure regions?
+ASG-DB
+   ↓
+20 DB NICs
+```
 
-**No.**
+NSG:
 
-Since ASGs are VNet-scoped, and VNets are regional, ASGs are also effectively regional.
+```text
+Internet → ASG-Web → TCP 443
 
----
+ASG-Web → ASG-App → TCP 8080
 
-# Summary
+ASG-App → ASG-DB → TCP 1433
+```
 
-| Feature                     | ASG                      |
-| --------------------------- | ------------------------ |
-| Purpose                     | Logical grouping of VMs  |
-| Based On                    | Application role         |
-| Uses IP addresses?          | No                       |
-| Used Inside                 | NSG rules                |
-| Supports Micro Segmentation | Yes                      |
-| Simplifies Rule Management  | Yes                      |
-| Regional                    | Yes (through VNet scope) |
+When a new VM is deployed:
 
-## Best Practice
+```text
+New App VM
+    ↓
+Add NIC to ASG-App
+```
 
-In enterprise environments, name ASGs by application tier rather than by subnet, for example:
+The existing NSG rules automatically apply.
 
-* `asg-web`
-* `asg-api`
-* `asg-db`
-* `asg-management`
-
-This keeps your security policy aligned with the application architecture rather than the network layout, making it much easier to scale and maintain over time.
+**That's the real power of Application Security Groups.**
