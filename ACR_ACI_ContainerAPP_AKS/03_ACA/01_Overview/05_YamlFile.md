@@ -55,18 +55,24 @@ frontend.yaml
 
 ```yaml
 properties:
-  managedEnvironmentId: /subscriptions/<subscription-id>/resourceGroups/containerapp-rg/providers/Microsoft.App/managedEnvironments/con-env
+  managedEnvironmentId: /subscriptions/e1173555-ec40-47aa-9592-3bdcfde6ffcc/resourceGroups/MyRG-India/providers/Microsoft.App/managedEnvironments/con-env
 
   configuration:
+    activeRevisionsMode: Single
+
     ingress:
       external: true
       targetPort: 5000
-      transport: auto
+      transport: http
+      allowInsecure: false
+      traffic:
+        - latestRevision: true
+          weight: 100
 
   template:
     containers:
       - name: frontend
-        image: <acr-login-server>/frontend:1.0
+        image: ramansharma95/frontend:1.0
 
         resources:
           cpu: 0.25
@@ -74,7 +80,11 @@ properties:
 
         env:
           - name: BACKEND_URL
-            value: https://backend-app.internal.<environment-domain>
+            value: https://backend-app.internal.wonderfulocean-5e224a18.centralindia.azurecontainerapps.io
+
+    scale:
+      minReplicas: 1
+      maxReplicas: 1
 ```
 
 The important part is:
@@ -83,8 +93,18 @@ The important part is:
 env:
   - name: BACKEND_URL
     value: https://backend-app.internal.<environment-domain>
-```
 
+```
+```
+To get this value
+$BACKEND_FQDN = az containerapp show `
+  --name backend-app `
+  --resource-group MYRG-India `
+  --query properties.configuration.ingress.fqdn `
+  --output tsv
+
+$BACKEND_FQDN
+```
 This tells the frontend where the backend is located.
 
 ---
@@ -102,19 +122,29 @@ properties:
   managedEnvironmentId: /subscriptions/<subscription-id>/resourceGroups/containerapp-rg/providers/Microsoft.App/managedEnvironments/con-env
 
   configuration:
+    activeRevisionsMode: Single
+
     ingress:
       external: false
       targetPort: 5000
-      transport: auto
+      transport: http
+      allowInsecure: false
+      traffic:
+        - latestRevision: true
+          weight: 100
 
   template:
     containers:
       - name: backend
-        image: <acr-login-server>/backend:1.0
+        image: ramansharma95/backend:1.0
 
         resources:
           cpu: 0.25
           memory: 0.5Gi
+
+    scale:
+      minReplicas: 1
+      maxReplicas: 1
 ```
 
 Notice:
@@ -210,10 +240,7 @@ az containerapp create \
 ### PowerShell
 
 ```powershell
-az containerapp create `
-  --name frontend-app `
-  --resource-group containerapp-rg `
-  --yaml frontend.yaml
+az containerapp create --name frontend-app --resource-group MYRG-India --yaml frontend.yaml
 ```
 
 ---
