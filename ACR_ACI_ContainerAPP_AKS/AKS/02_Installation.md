@@ -10,7 +10,7 @@ We will:
 2. Create an Azure Resource Group.
 3. Create an AKS cluster.
 4. Create a node pool with **2 worker nodes**.
-5. Use `Standard_D2s_v5` as the VM size.
+5. Use `Standard_D2ds_v6` as the VM size.
 6. Configure `kubectl`.
 7. Verify the Kubernetes nodes.
 8. Verify the node pool.
@@ -76,12 +76,12 @@ Node Pool: agentpool
 
         +----------------+
         | Node 1         |
-        | D2s_v5         |
+        | D2s_v6         |
         +----------------+
 
         +----------------+
         | Node 2         |
-        | D2s_v5         |
+        | D2s_v6         |
         +----------------+
 ```
 
@@ -202,7 +202,7 @@ $AKS_NAME = "myakscluster"
 
 $NODE_POOL = "agentpool"
 $NODE_COUNT = 2
-$NODE_SIZE = "Standard_D2s_v5"
+$NODE_SIZE = "Standard_D2ds_v6"
 ```
 
 ---
@@ -216,7 +216,7 @@ AKS_NAME="myakscluster"
 
 NODE_POOL="agentpool"
 NODE_COUNT=2
-NODE_SIZE="Standard_D2s_v5"
+NODE_SIZE="Standard_D2ds_v6"
 ```
 
 Notice the difference.
@@ -334,7 +334,7 @@ centralindia  AKS-RG
 For this lab we are using:
 
 ```text
-Standard_D2s_v5
+Standard_D2ds_v6
 ```
 
 This is a reasonable general-purpose size for an AKS training cluster.
@@ -498,7 +498,7 @@ Node Pool
 We defined:
 
 ```text
-NODE_SIZE = Standard_D2s_v5
+NODE_SIZE = Standard_D2ds_v6
 ```
 
 Therefore each worker node uses that VM size.
@@ -619,7 +619,7 @@ You should see something similar to:
 ```text
 Name        Count    VMSize
 ----------  -------  ----------------
-agentpool   2        Standard_D2s_v5
+agentpool   2        Standard_D2ds_v6
 ```
 
 ---
@@ -792,7 +792,7 @@ $AKS_NAME = "myakscluster"
 
 $NODE_POOL = "agentpool"
 $NODE_COUNT = 2
-$NODE_SIZE = "Standard_D2s_v5"
+$NODE_SIZE = "Standard_D2ds_v6"
 
 
 # ----------------------------------------------------------
@@ -918,7 +918,7 @@ AKS_NAME="myakscluster"
 
 NODE_POOL="agentpool"
 NODE_COUNT=2
-NODE_SIZE="Standard_D2s_v5"
+NODE_SIZE="Standard_D2ds_v6"
 
 
 # ----------------------------------------------------------
