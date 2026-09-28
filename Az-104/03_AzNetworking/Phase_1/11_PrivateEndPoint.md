@@ -1,5 +1,3 @@
----
-
 # 1. What is a Private Endpoint?
 
 An **Azure Private Endpoint** is a network interface that gives an Azure PaaS service, such as an Azure Storage Account, a **private IP address from your VNet**.
