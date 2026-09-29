@@ -1,10 +1,4 @@
-Absolutely. For AZ-104, **Azure NAT Gateway** is best understood as the solution for:
-
-> **Private VMs need outbound Internet access, but we don't want to give those VMs public IP addresses.**
-
-I’ll explain the concept first, then build the same architecture through **Azure Portal and Azure CLI (PowerShell on Windows)**.
-
-# Azure NAT Gateway — Detailed AZ-104 Explanation
+# Azure NAT Gateway — Detailed 
 
 ## 1. What is NAT?
 
