@@ -12,7 +12,6 @@ Key concept for AZ-900: Microsoft is responsible for the security of the cloud, 
 
 ## 2. Understanding responsibility by cloud model
 
-[אלונה ליפשיץ אדריכלים |Infills in Pisgat Ze'ev and Neve Ya'](https://images.openai.com/static-rsc-4/BhYB8-ecx9qhNQJF0QORHlMC3cukcZFVYdHJJd5_NEWC49N62geIGQ4SkH5AK3ISg4lu7t7gJqkUmNxoRbO0A9XQGhRdkS6IgKKvchQtFxMvgrmLTMmJAQ4BFnFamWDLgwqPeuIaq0jXR3OCtiqhP2BpLITixBp4fNp6OoTe5d0?purpose=inline)
 
 On-premises infrastructure
 
